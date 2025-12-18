@@ -1,0 +1,194 @@
+
+
+'use client'
+
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+
+export default function PhoneAnimation() {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <div className="relative w-[200px] sm:w-[300px] h-[400px] sm:h-[600px] pt-10">
+      <motion.div
+        className="absolute inset-0"
+        animate={{
+          y: [0, -10, 0],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        style={{
+          perspective: '1000px',
+        }}
+      >
+        <motion.div
+          className="w-full h-full"
+          style={{
+            transformStyle: 'preserve-3d',
+            transform: 'rotateY(-45deg) rotateX(10deg)',
+          }}
+        >
+          {/* Phone body */}
+          <motion.div
+            className="absolute inset-0 bg-gray-800 rounded-[40px] shadow-xl"
+            style={{
+              boxShadow: '0 0 0 10px #1a1a1a, 0 0 0 13px #272727',
+            }}
+          />
+
+          {/* Glowing logo
+          <motion.div
+            animate={{
+              opacity: [0.9, 1, 0.9],
+              scale: [1, 1.05, 1],
+              boxShadow: [
+                '0 0 10px rgba(255,255,255,0.1)',
+                '0 0 20px rgba(255,255,255,0.2)',
+                '0 0 10px rgba(255,255,255,0.1)',
+              ],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: 'loop',
+              ease: 'easeInOut',
+            }}
+            style={{
+              height: '180px',
+              width: '150px',
+              position: 'relative',
+              top: '30%',
+              left: '25%',
+              zIndex: 5,
+              transform: 'skewY(15deg)',
+              borderRadius: '24px',
+            }}
+            className="absolute inset-0"
+          >
+            <img
+              src="/icons/logo-bg.png"
+              alt=""
+              className="w-full h-full object-contain rounded-2xl"
+            />
+          </motion.div> */}
+
+
+          {/* Glowing logo with responsive sizing */}
+          <motion.div
+            animate={{
+              opacity: [0.9, 1, 0.9],
+              scale: [1, 1.05, 1],
+              boxShadow: [
+                '0 0 10px rgba(255,255,255,0.1)',
+                '0 0 20px rgba(255,255,255,0.2)',
+                '0 0 10px rgba(255,255,255,0.1)',
+              ],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: 'loop',
+              ease: 'easeInOut',
+            }}
+            className="absolute inset-0 flex justify-center items-center z-10"
+            style={{ transform: 'skewY(15deg)' }}
+          >
+            <img
+              src="/icons/logo-bg.png"
+              alt="App Logo"
+              className="
+      object-contain 
+      rounded-2xl 
+      w-[40%] h-auto 
+      sm:w-[50%] 
+      md:w-[60%] 
+      lg:w-[70%]
+    "
+            />
+          </motion.div>
+
+
+          {/* Phone screen */}
+          <motion.div
+            className="absolute inset-[4px] rounded-[36px] overflow-hidden"
+            initial={{ opacity: 0.8 }}
+            animate={{ opacity: isHovered ? 1 : 0.8 }}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500"
+              animate={{
+                backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                repeatType: 'reverse',
+              }}
+            />
+            <motion.div
+              className="absolute inset-0 bg-white"
+              animate={{
+                opacity: [0, 0.6, 0],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: 'reverse',
+              }}
+            />
+            {/* App content placeholder */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+              <motion.div
+                className="w-24 h-24 bg-white/20 rounded-full"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.8, 0.8, 0.6],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: 'reverse',
+                }}
+              />
+              <motion.div
+                className="w-32 h-32 bg-white/10 rounded-2xl mt-4"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.5, 0.5, 0.5],
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Illumination effect */}
+          <motion.div
+            className="absolute -inset-4 rounded-[48px] bg-gradient-to-br from-blue-400/40 via-purple-500/40 to-pink-500/40 blur-2xl"
+            animate={{
+              opacity: [0.6, 0.8, 0.6],
+              scale: [1, 1, 1],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              repeatType: 'reverse',
+            }}
+          />
+
+          {/* Phone details */}
+          <div className="absolute inset-0">
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-black rounded-full" />
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-1/4 h-1 bg-gray-900 rounded-full" />
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
+  )
+}
